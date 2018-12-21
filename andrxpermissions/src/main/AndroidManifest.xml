@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.baina.apps.andrxpermissions">
+    package="baina.android.com.andrxpermissions">
 
     <application>
-        <activity android:name=".RxPermissionActivity" />
+        <activity android:name="baina.android.com.andrxpermissions.RxPermissionActivity" />
     </application>
-
 </manifest>

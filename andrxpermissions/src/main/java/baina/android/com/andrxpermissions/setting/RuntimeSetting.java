@@ -1,23 +1,8 @@
-/*
- * Copyright © Yan Zhenjie
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.baina.apps.andrxpermissions.setting;
+package baina.android.com.andrxpermissions.setting;
 
-import com.baina.apps.andrxpermissions.MainExecutor;
-import com.baina.apps.andrxpermissions.RxPermissionActivity;
-import com.baina.apps.andrxpermissions.source.Source;
+import baina.android.com.andrxpermissions.MainExecutor;
+import baina.android.com.andrxpermissions.RxPermissionActivity;
+import baina.android.com.andrxpermissions.source.Source;
 
 /**
  * Created by taochen on 18-12-21.

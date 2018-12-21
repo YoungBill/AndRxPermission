@@ -9,14 +9,14 @@ import android.view.SurfaceView;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.view.RxView;
-import com.baina.apps.andrxpermissions.Permission;
-import com.baina.apps.andrxpermissions.RxPermissions;
-import com.baina.apps.andrxpermissions.setting.RuntimeSetting;
-import com.baina.apps.andrxpermissions.setting.Setting;
-import com.baina.apps.andrxpermissions.source.ContextSource;
 
 import java.io.IOException;
 
+import baina.android.com.andrxpermissions.Permission;
+import baina.android.com.andrxpermissions.RxPermissions;
+import baina.android.com.andrxpermissions.setting.RuntimeSetting;
+import baina.android.com.andrxpermissions.setting.Setting;
+import baina.android.com.andrxpermissions.source.ContextSource;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;

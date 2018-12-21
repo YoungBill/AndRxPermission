@@ -1,3 +1,2 @@
-include 'lib'
-project(':lib').name = 'rxpermissions'
+include ':andrxpermissions'
 include 'sample'

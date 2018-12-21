@@ -1,4 +1,4 @@
-package com.baina.apps.andrxpermissions;
+package baina.android.com.andrxpermissions;
 
 import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
