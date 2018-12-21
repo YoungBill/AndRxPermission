@@ -19,58 +19,58 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.functions.Function;
 import io.reactivex.subjects.PublishSubject;
 
-public class RxPermissions {
+public class AndRxPermissions {
 
-    static final String TAG = RxPermissions.class.getSimpleName();
+    static final String TAG = AndRxPermissions.class.getSimpleName();
     static final Object TRIGGER = new Object();
 
     @VisibleForTesting
-    Lazy<RxPermissionsFragment> mRxPermissionsFragment;
+    Lazy<AndRxPermissionsFragment> mAndRxPermissionsFragment;
 
-    public RxPermissions(@NonNull final FragmentActivity activity) {
-        mRxPermissionsFragment = getLazySingleton(activity.getSupportFragmentManager());
+    public AndRxPermissions(@NonNull final FragmentActivity activity) {
+        mAndRxPermissionsFragment = getLazySingleton(activity.getSupportFragmentManager());
     }
 
-    public RxPermissions(@NonNull final Fragment fragment) {
-        mRxPermissionsFragment = getLazySingleton(fragment.getChildFragmentManager());
+    public AndRxPermissions(@NonNull final Fragment fragment) {
+        mAndRxPermissionsFragment = getLazySingleton(fragment.getChildFragmentManager());
     }
 
     @NonNull
-    private Lazy<RxPermissionsFragment> getLazySingleton(@NonNull final FragmentManager fragmentManager) {
-        return new Lazy<RxPermissionsFragment>() {
+    private Lazy<AndRxPermissionsFragment> getLazySingleton(@NonNull final FragmentManager fragmentManager) {
+        return new Lazy<AndRxPermissionsFragment>() {
 
-            private RxPermissionsFragment rxPermissionsFragment;
+            private AndRxPermissionsFragment andRxPermissionsFragment;
 
             @Override
-            public synchronized RxPermissionsFragment get() {
-                if (rxPermissionsFragment == null) {
-                    rxPermissionsFragment = getRxPermissionsFragment(fragmentManager);
+            public synchronized AndRxPermissionsFragment get() {
+                if (andRxPermissionsFragment == null) {
+                    andRxPermissionsFragment = getAndRxPermissionsFragment(fragmentManager);
                 }
-                return rxPermissionsFragment;
+                return andRxPermissionsFragment;
             }
 
         };
     }
 
-    private RxPermissionsFragment getRxPermissionsFragment(@NonNull final FragmentManager fragmentManager) {
-        RxPermissionsFragment rxPermissionsFragment = findRxPermissionsFragment(fragmentManager);
-        boolean isNewInstance = rxPermissionsFragment == null;
+    private AndRxPermissionsFragment getAndRxPermissionsFragment(@NonNull final FragmentManager fragmentManager) {
+        AndRxPermissionsFragment andRxPermissionsFragment = findAndRxPermissionsFragment(fragmentManager);
+        boolean isNewInstance = andRxPermissionsFragment == null;
         if (isNewInstance) {
-            rxPermissionsFragment = new RxPermissionsFragment();
+            andRxPermissionsFragment = new AndRxPermissionsFragment();
             fragmentManager
                     .beginTransaction()
-                    .add(rxPermissionsFragment, TAG)
+                    .add(andRxPermissionsFragment, TAG)
                     .commitNow();
         }
-        return rxPermissionsFragment;
+        return andRxPermissionsFragment;
     }
 
-    private RxPermissionsFragment findRxPermissionsFragment(@NonNull final FragmentManager fragmentManager) {
-        return (RxPermissionsFragment) fragmentManager.findFragmentByTag(TAG);
+    private AndRxPermissionsFragment findAndRxPermissionsFragment(@NonNull final FragmentManager fragmentManager) {
+        return (AndRxPermissionsFragment) fragmentManager.findFragmentByTag(TAG);
     }
 
     public void setLogging(boolean logging) {
-        mRxPermissionsFragment.get().setLogging(logging);
+        mAndRxPermissionsFragment.get().setLogging(logging);
     }
 
     /**
@@ -181,7 +181,7 @@ public class RxPermissions {
 
     private Observable<Permission> request(final Observable<?> trigger, final String... permissions) {
         if (permissions == null || permissions.length == 0) {
-            throw new IllegalArgumentException("RxPermissions.request/requestEach requires at least one input permission");
+            throw new IllegalArgumentException("AndRxPermissions.request/requestEach requires at least one input permission");
         }
         return oneOf(trigger, pending(permissions))
                 .flatMap(new Function<Object, Observable<Permission>>() {
@@ -194,7 +194,7 @@ public class RxPermissions {
 
     private Observable<?> pending(final String... permissions) {
         for (String p : permissions) {
-            if (!mRxPermissionsFragment.get().containsByPermission(p)) {
+            if (!mAndRxPermissionsFragment.get().containsByPermission(p)) {
                 return Observable.empty();
             }
         }
@@ -216,7 +216,7 @@ public class RxPermissions {
         // In case of multiple permissions, we create an Observable for each of them.
         // At the end, the observables are combined to have a unique response.
         for (String permission : permissions) {
-            mRxPermissionsFragment.get().log("Requesting permission " + permission);
+            mAndRxPermissionsFragment.get().log("Requesting permission " + permission);
             if (isGranted(permission)) {
                 // Already granted, or not Android M
                 // Return a granted Permission object.
@@ -230,12 +230,12 @@ public class RxPermissions {
                 continue;
             }
 
-            PublishSubject<Permission> subject = mRxPermissionsFragment.get().getSubjectByPermission(permission);
+            PublishSubject<Permission> subject = mAndRxPermissionsFragment.get().getSubjectByPermission(permission);
             // Create a new subject if not exists
             if (subject == null) {
                 unrequestedPermissions.add(permission);
                 subject = PublishSubject.create();
-                mRxPermissionsFragment.get().setSubjectForPermission(permission, subject);
+                mAndRxPermissionsFragment.get().setSubjectForPermission(permission, subject);
             }
 
             list.add(subject);
@@ -280,8 +280,8 @@ public class RxPermissions {
 
     @TargetApi(Build.VERSION_CODES.M)
     void requestPermissionsFromFragment(String[] permissions) {
-        mRxPermissionsFragment.get().log("requestPermissionsFromFragment " + TextUtils.join(", ", permissions));
-        mRxPermissionsFragment.get().requestPermissions(permissions);
+        mAndRxPermissionsFragment.get().log("requestPermissionsFromFragment " + TextUtils.join(", ", permissions));
+        mAndRxPermissionsFragment.get().requestPermissions(permissions);
     }
 
     /**
@@ -291,7 +291,7 @@ public class RxPermissions {
      */
     @SuppressWarnings("WeakerAccess")
     public boolean isGranted(String permission) {
-        return !isMarshmallow() || mRxPermissionsFragment.get().isGranted(permission);
+        return !isMarshmallow() || mAndRxPermissionsFragment.get().isGranted(permission);
     }
 
     /**
@@ -301,7 +301,7 @@ public class RxPermissions {
      */
     @SuppressWarnings("WeakerAccess")
     public boolean isRevoked(String permission) {
-        return isMarshmallow() && mRxPermissionsFragment.get().isRevoked(permission);
+        return isMarshmallow() && mAndRxPermissionsFragment.get().isRevoked(permission);
     }
 
     boolean isMarshmallow() {
@@ -309,7 +309,7 @@ public class RxPermissions {
     }
 
     void onRequestPermissionsResult(String permissions[], int[] grantResults) {
-        mRxPermissionsFragment.get().onRequestPermissionsResult(permissions, grantResults, new boolean[permissions.length]);
+        mAndRxPermissionsFragment.get().onRequestPermissionsResult(permissions, grantResults, new boolean[permissions.length]);
     }
 
     @FunctionalInterface

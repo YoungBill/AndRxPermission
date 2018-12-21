@@ -3,6 +3,6 @@
     package="baina.android.com.andrxpermissions">
 
     <application>
-        <activity android:name="baina.android.com.andrxpermissions.RxPermissionActivity" />
+        <activity android:name="baina.android.com.andrxpermissions.AndRxPermissionActivity" />
     </application>
 </manifest>

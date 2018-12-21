@@ -14,7 +14,7 @@ import java.util.Map;
 
 import io.reactivex.subjects.PublishSubject;
 
-public class RxPermissionsFragment extends Fragment {
+public class AndRxPermissionsFragment extends Fragment {
 
     private static final int PERMISSIONS_REQUEST_CODE = 42;
 
@@ -23,7 +23,7 @@ public class RxPermissionsFragment extends Fragment {
     private Map<String, PublishSubject<Permission>> mSubjects = new HashMap<>();
     private boolean mLogging;
 
-    public RxPermissionsFragment() {
+    public AndRxPermissionsFragment() {
     }
 
     @Override
@@ -59,7 +59,7 @@ public class RxPermissionsFragment extends Fragment {
             PublishSubject<Permission> subject = mSubjects.get(permissions[i]);
             if (subject == null) {
                 // No subject found
-                Log.e(RxPermissions.TAG, "RxPermissions.onRequestPermissionsResult invoked but didn't find the corresponding permission request.");
+                Log.e(AndRxPermissions.TAG, "AndRxPermissions.onRequestPermissionsResult invoked but didn't find the corresponding permission request.");
                 return;
             }
             mSubjects.remove(permissions[i]);
@@ -105,7 +105,7 @@ public class RxPermissionsFragment extends Fragment {
 
     void log(String message) {
         if (mLogging) {
-            Log.d(RxPermissions.TAG, message);
+            Log.d(AndRxPermissions.TAG, message);
         }
     }
 

@@ -29,31 +29,4 @@ ext {
     supportFragment = "com.android.support:support-fragment:$supportLibraryVersion"
     junit = 'junit:junit:4.12'
     mockito = 'org.mockito:mockito-core:1.10.19'
-
-    robolectricVersion = '3.3.2'
-    robolectric = "org.robolectric:robolectric:$robolectricVersion"
-    robolectricShadowsSupport = "org.robolectric:shadows-support-v4:$robolectricVersion"
-    // Workaround for https://github.com/robolectric/robolectric/issues/1932
-    khronosOpenGLApi = "org.khronos:opengl-api:gl1.1-android-2.1_r1"
-
-    bintrayRepo = 'tbruyelle'
-    bintrayName = 'RxPermissions2'
-
-    publishedGroupId = 'com.baina.apps.andrxpermissions'
-    artifact = 'rxpermissions'
-    libraryName = 'RxPermissions'
-    libraryVersion = '0.9.5'
-
-    libraryDescription = 'A wrapper for Android 6.0 permissions'
-
-    siteUrl = 'https://github.com/tbruyelle/RxPermissions'
-    gitUrl = 'https://github.com/tbruyelle/RxPermissions.git'
-
-    developerId = 'tbruyelle'
-    developerName = 'Thomas Bruyelle'
-    developerEmail = 'thomas.bruyelle@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
 }

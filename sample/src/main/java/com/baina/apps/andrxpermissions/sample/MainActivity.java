@@ -13,7 +13,7 @@ import com.jakewharton.rxbinding2.view.RxView;
 import java.io.IOException;
 
 import baina.android.com.andrxpermissions.Permission;
-import baina.android.com.andrxpermissions.RxPermissions;
+import baina.android.com.andrxpermissions.AndRxPermissions;
 import baina.android.com.andrxpermissions.setting.RuntimeSetting;
 import baina.android.com.andrxpermissions.setting.Setting;
 import baina.android.com.andrxpermissions.source.ContextSource;
@@ -23,7 +23,7 @@ import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "RxPermissionsSample";
+    private static final String TAG = "AndRxPermissionsSample";
 
     private Camera camera;
     private SurfaceView surfaceView;
@@ -32,15 +32,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.setLogging(true);
+        AndRxPermissions andRxPermissions = new AndRxPermissions(this);
+        andRxPermissions.setLogging(true);
 
         setContentView(R.layout.act_main);
         surfaceView = findViewById(R.id.surfaceView);
 
         disposable = RxView.clicks(findViewById(R.id.enableCamera))
                 // Ask for permissions when button is clicked
-                .compose(rxPermissions.ensureEach(permission.CAMERA, permission.WRITE_EXTERNAL_STORAGE))
+                .compose(andRxPermissions.ensureEach(permission.CAMERA, permission.WRITE_EXTERNAL_STORAGE))
                 .subscribe(new Consumer<Permission>() {
                                @Override
                                public void accept(Permission permission) {

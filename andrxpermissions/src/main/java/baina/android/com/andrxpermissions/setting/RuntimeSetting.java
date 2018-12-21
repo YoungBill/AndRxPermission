@@ -1,14 +1,14 @@
 package baina.android.com.andrxpermissions.setting;
 
 import baina.android.com.andrxpermissions.MainExecutor;
-import baina.android.com.andrxpermissions.RxPermissionActivity;
+import baina.android.com.andrxpermissions.AndRxPermissionActivity;
 import baina.android.com.andrxpermissions.source.Source;
 
 /**
  * Created by taochen on 18-12-21.
  * Mail：935612713@qq.com
  */
-public class RuntimeSetting implements Setting, RxPermissionActivity.RequestListener {
+public class RuntimeSetting implements Setting, AndRxPermissionActivity.RequestListener {
 
     private static final MainExecutor EXECUTOR = new MainExecutor();
 
@@ -27,7 +27,7 @@ public class RuntimeSetting implements Setting, RxPermissionActivity.RequestList
 
     @Override
     public void start() {
-        RxPermissionActivity.permissionSetting(mSource.getContext(), this);
+        AndRxPermissionActivity.permissionSetting(mSource.getContext(), this);
     }
 
     @Override

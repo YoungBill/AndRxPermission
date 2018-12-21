@@ -9,7 +9,7 @@ import android.view.KeyEvent;
 import baina.android.com.andrxpermissions.setting.RuntimeSettingPage;
 import baina.android.com.andrxpermissions.source.ContextSource;
 
-public final class RxPermissionActivity extends Activity {
+public final class AndRxPermissionActivity extends Activity {
 
     private static final String KEY_INPUT_OPERATION = "KEY_INPUT_OPERATION";
     private static final int VALUE_INPUT_PERMISSION_SETTING = 2;
@@ -20,9 +20,9 @@ public final class RxPermissionActivity extends Activity {
      * Request for setting.
      */
     public static void permissionSetting(Context context, RequestListener requestListener) {
-        RxPermissionActivity.sRequestListener = requestListener;
+        AndRxPermissionActivity.sRequestListener = requestListener;
 
-        Intent intent = new Intent(context, RxPermissionActivity.class);
+        Intent intent = new Intent(context, AndRxPermissionActivity.class);
         intent.putExtra(KEY_INPUT_OPERATION, VALUE_INPUT_PERMISSION_SETTING);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
