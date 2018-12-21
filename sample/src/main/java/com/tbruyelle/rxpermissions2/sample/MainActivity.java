@@ -11,6 +11,9 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.tbruyelle.rxpermissions2.setting.RuntimeSetting;
+import com.tbruyelle.rxpermissions2.setting.Setting;
+import com.tbruyelle.rxpermissions2.source.ContextSource;
 
 import java.io.IOException;
 
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         disposable = RxView.clicks(findViewById(R.id.enableCamera))
                 // Ask for permissions when button is clicked
-                .compose(rxPermissions.ensureEach(permission.CAMERA))
+                .compose(rxPermissions.ensureEach(permission.CAMERA,permission.WRITE_EXTERNAL_STORAGE))
                 .subscribe(new Consumer<Permission>() {
                                @Override
                                public void accept(Permission permission) {
@@ -62,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
                                        Toast.makeText(MainActivity.this,
                                                "Permission denied, can't enable the camera",
                                                Toast.LENGTH_SHORT).show();
+                                       new RuntimeSetting(new ContextSource(MainActivity.this)).onComeback(new Setting.Action() {
+                                           @Override
+                                           public void onAction() {
+                                               Toast.makeText(MainActivity.this,
+                                                       "setting, onComeback",
+                                                       Toast.LENGTH_SHORT).show();
+                                           }
+                                       }).start();
                                    }
                                }
                            },
