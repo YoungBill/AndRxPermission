@@ -1,6 +1,4 @@
-# RxPermissions
-
-[![](https://jitpack.io/v/tbruyelle/RxPermissions.svg)](https://jitpack.io/#tbruyelle/RxPermissions) [![BuildVersion](https://buildstats.info/nuget/RxPermissions)](https://www.nuget.org/packages/RxPermissions/) [![Build Status](https://api.travis-ci.org/tbruyelle/RxPermissions.svg?branch=master)](https://travis-ci.org/tbruyelle/RxPermissions)
+# AndRxPermissions
 
 This library allows the usage of RxJava with the new Android M permission model.
 
@@ -8,34 +6,22 @@ This library allows the usage of RxJava with the new Android M permission model.
 
 To use this library your `minSdkVersion` must be >= 11.
 
-```gradle
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
-
-dependencies {
-    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
-}
-```
 
 ## Usage
 
-Create a `RxPermissions` instance :
+Create a `AndRxPermissions` instance :
 
 ```java
-final RxPermissions rxPermissions = new RxPermissions(this); // where this is an Activity or Fragment instance
+AndRxPermissions andRxPermissions = new AndRxPermissions(this); // where this is an Activity or Fragment instance
 ```
 
-**NOTE:** `new RxPermissions(this)` the `this` parameter can be a FragmentActivity or a Fragment. If you are using `RxPermissions` inside of a fragment you should pass the fragment instance(`new RxPermissions(this)`) as constructor parameter rather than `new RxPermissions(fragment.getActivity())` or you could face a `java.lang.IllegalStateException: FragmentManager is already executing transactions`.  
+**NOTE:** `new AndRxPermissions(this)` the `this` parameter can be a FragmentActivity or a Fragment. If you are using `AndRxPermissions` inside of a fragment you should pass the fragment instance(`new AndRxPermissions(this)`) as constructor parameter rather than `new AndRxPermissions(fragment.getActivity())` or you could face a `java.lang.IllegalStateException: FragmentManager is already executing transactions`.  
 
 Example : request the CAMERA permission (with Retrolambda for brevity, but not required)
 
 ```java
 // Must be done during an initialization phase like onCreate
-rxPermissions
+andRxPermissions
     .request(Manifest.permission.CAMERA)
     .subscribe(granted -> {
         if (granted) { // Always true pre-M
@@ -66,7 +52,7 @@ RxView.clicks(findViewById(R.id.enableCamera))
 If multiple permissions at the same time, the result is combined :
 
 ```java
-rxPermissions
+andRxPermissions
     .request(Manifest.permission.CAMERA,
              Manifest.permission.READ_PHONE_STATE)
     .subscribe(granted -> {
@@ -81,7 +67,7 @@ rxPermissions
 You can also observe a detailed result with `requestEach` or `ensureEach` :
 
 ```java
-rxPermissions
+andRxPermissions
     .requestEach(Manifest.permission.CAMERA,
              Manifest.permission.READ_PHONE_STATE)
     .subscribe(permission -> { // will emit 2 Permission objects
@@ -99,7 +85,7 @@ rxPermissions
 You can also get combined detailed result with `requestEachCombined` or `ensureEachCombined` :
 
 ```java
-rxPermissions
+andRxPermissions
     .requestEachCombined(Manifest.permission.CAMERA,
              Manifest.permission.READ_PHONE_STATE)
     .subscribe(permission -> { // will emit 1 Permission object
@@ -125,7 +111,6 @@ must be done during an initialization phase**. This may be `Activity.onCreate`, 
 If not, and if your app is restarted during the permission request (because of a configuration
 change for instance), the user's answer will never be emitted to the subscriber.
 
-You can find more details about that [here](https://github.com/tbruyelle/RxPermissions/issues/69).
 
 ## Status
 
@@ -143,20 +128,3 @@ in `Activity.onRequestPermissionsResult()`.
 
 - All what RX provides about transformation, filter, chaining...
 
-# License
-
-```
-Copyright (C) 2015 Thomas Bruyelle
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
