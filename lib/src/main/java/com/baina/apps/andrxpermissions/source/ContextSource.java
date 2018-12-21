@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tbruyelle.rxpermissions2.source;
+package com.baina.apps.andrxpermissions.source;
 
 import android.app.Activity;
 import android.content.Context;

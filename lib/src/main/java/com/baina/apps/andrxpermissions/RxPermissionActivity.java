@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tbruyelle.rxpermissions2;
+package com.baina.apps.andrxpermissions;
 
 import android.app.Activity;
 import android.content.Context;
@@ -21,8 +21,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
-import com.tbruyelle.rxpermissions2.setting.RuntimeSettingPage;
-import com.tbruyelle.rxpermissions2.source.ContextSource;
+import com.baina.apps.andrxpermissions.setting.RuntimeSettingPage;
+import com.baina.apps.andrxpermissions.source.ContextSource;
 
 public final class RxPermissionActivity extends Activity {
 

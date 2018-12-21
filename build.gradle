@@ -39,7 +39,7 @@ ext {
     bintrayRepo = 'tbruyelle'
     bintrayName = 'RxPermissions2'
 
-    publishedGroupId = 'com.tbruyelle.rxpermissions2'
+    publishedGroupId = 'com.baina.apps.andrxpermissions'
     artifact = 'rxpermissions'
     libraryName = 'RxPermissions'
     libraryVersion = '0.9.5'

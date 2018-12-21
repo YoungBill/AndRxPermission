@@ -1,5 +1,5 @@
 /*
- * Copyright © Yan Zhenjie
+ * Copyright 2018 Yan Zhenjie
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tbruyelle.rxpermissions2.source;
-
-import android.content.Context;
-import android.content.Intent;
+package com.baina.apps.andrxpermissions.setting;
 
 /**
  * Created by taochen on 18-12-21.
  * Mail：935612713@qq.com
  */
-public abstract class Source {
+public interface Setting {
+    /**
+     * The action when the user comebacks.
+     */
+    Setting onComeback(Setting.Action comeback);
 
-    public abstract Context getContext();
+    /**
+     * SettingPage setting.
+     */
+    void start();
 
-    public abstract void startActivityForResult(Intent intent, int requestCode);
-
+    /**
+     * An action.
+     */
+    interface Action {
+        void onAction();
+    }
 }

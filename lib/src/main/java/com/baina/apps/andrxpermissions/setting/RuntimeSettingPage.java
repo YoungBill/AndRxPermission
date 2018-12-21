@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tbruyelle.rxpermissions2.setting;
+package com.baina.apps.andrxpermissions.setting;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -23,7 +23,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 
-import com.tbruyelle.rxpermissions2.source.Source;
+import com.baina.apps.andrxpermissions.source.Source;
 
 /**
  * Created by taochen on 18-12-21.

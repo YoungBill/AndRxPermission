@@ -1,4 +1,4 @@
-package com.tbruyelle.rxpermissions2;
+package com.baina.apps.andrxpermissions;
 
 import java.util.List;
 

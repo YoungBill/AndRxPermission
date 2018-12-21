@@ -1,4 +1,4 @@
-package com.tbruyelle.rxpermissions2.sample;
+package com.baina.apps.andrxpermissions.sample;
 
 import android.Manifest.permission;
 import android.hardware.Camera;
@@ -9,11 +9,11 @@ import android.view.SurfaceView;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.view.RxView;
-import com.tbruyelle.rxpermissions2.Permission;
-import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.tbruyelle.rxpermissions2.setting.RuntimeSetting;
-import com.tbruyelle.rxpermissions2.setting.Setting;
-import com.tbruyelle.rxpermissions2.source.ContextSource;
+import com.baina.apps.andrxpermissions.Permission;
+import com.baina.apps.andrxpermissions.RxPermissions;
+import com.baina.apps.andrxpermissions.setting.RuntimeSetting;
+import com.baina.apps.andrxpermissions.setting.Setting;
+import com.baina.apps.andrxpermissions.source.ContextSource;
 
 import java.io.IOException;
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         disposable = RxView.clicks(findViewById(R.id.enableCamera))
                 // Ask for permissions when button is clicked
-                .compose(rxPermissions.ensureEach(permission.CAMERA,permission.WRITE_EXTERNAL_STORAGE))
+                .compose(rxPermissions.ensureEach(permission.CAMERA, permission.WRITE_EXTERNAL_STORAGE))
                 .subscribe(new Consumer<Permission>() {
                                @Override
                                public void accept(Permission permission) {
